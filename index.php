@@ -27,7 +27,7 @@ foreach ($events as $event) {
     error_log('Non text message has come');
     continue;
   }
-  $bot->replyText($event->getReplyToken(), $event->getText() . $event->getUserId() "\nにゃ");
+  $bot->replyText($event->getReplyToken(), $event->getText() . $event->getUserId() . "\nにゃ");
 
   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getReplyToken()."にゃ");
   $response = $bot->pushMessage($event->getReplyToken(), $textMessageBuilder);
