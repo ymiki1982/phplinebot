@@ -30,7 +30,7 @@ foreach ($events as $event) {
   $bot->replyText($event->getReplyToken(), $event->getText() . $event->getUserId() . "\nにゃ");
 
   $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($event->getReplyToken()."にゃ");
-  $response = $bot->pushMessage($event->getReplyToken(), $textMessageBuilder);
+  $response = $bot->pushMessage($event->getUserId(), $textMessageBuilder);
 
   echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
