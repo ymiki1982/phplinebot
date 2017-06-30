@@ -40,7 +40,10 @@ function chat($text) {
     // docomo chatAPI
     $api_key = '734863314f674a4c7264535a3479565a2f326e6b59624852366c6c6c387370374e736830666d424e4d5333';
     $api_url = sprintf('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue?APIKEY=%s', $api_key);
-    $req_body = array('utt' => $text);
+    $req_body = array(
+'utt' => $text,
+'t' => 20,
+);
 
     $headers = array(
         'Content-Type: application/json; charset=UTF-8',
