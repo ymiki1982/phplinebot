@@ -27,8 +27,35 @@ foreach ($events as $event) {
     error_log('Non text message has come');
     continue;
   }
-  $bot->replyText($event->getReplyToken(), $event->getText() . "\nにゃ");
 
+  //docomo返信
+  $response = chat($event->getText());
+
+  $bot->replyText($event->getReplyToken(), $response . "\nにゃ");
+
+}
+
+//ドコモの雑談APIから雑談データを取得
+function chat($text) {
+    // docomo chatAPI
+    $api_key = '734863314f674a4c7264535a3479565a2f326e6b59624852366c6c6c387370374e736830666d424e4d533';
+    $api_url = sprintf('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue?APIKEY=%s', $api_key);
+    $req_body = array('utt' => $text);
+
+    $headers = array(
+        'Content-Type: application/json; charset=UTF-8',
+    );
+    $options = array(
+        'http'=>array(
+            'method'  => 'POST',
+            'header'  => implode("\r\n", $headers),
+            'content' => json_encode($req_body),
+            )
+        );
+    $stream = stream_context_create($options);
+    $res = json_decode(file_get_contents($api_url, false, $stream));
+
+    return $res->utt;
 }
 
  ?>
