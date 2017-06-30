@@ -28,6 +28,7 @@ foreach ($events as $event) {
     continue;
   }
 
+
   //docomo返信
   $response = chat($event->getText());
 
@@ -38,12 +39,21 @@ foreach ($events as $event) {
 //ドコモの雑談APIから雑談データを取得
 function chat($text) {
     // docomo chatAPI
+
+    $context_file = dirname(__FILE__).'/context.txt';
+
+  if ( file_exists($context_file) ) {
+    $req_body['context'] = file_get_contents($context_file);
+    $test = file_get_contents($context_file);
+  }
+
     $api_key = '734863314f674a4c7264535a3479565a2f326e6b59624852366c6c6c387370374e736830666d424e4d5333';
     $api_url = sprintf('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue?APIKEY=%s', $api_key);
     $req_body = array(
 'utt' => $text,
 't' => 20,
 );
+
 
     $headers = array(
         'Content-Type: application/json; charset=UTF-8',
@@ -58,7 +68,9 @@ function chat($text) {
     $stream = stream_context_create($options);
     $res = json_decode(file_get_contents($api_url, false, $stream));
 
-    return $res->utt;
+    //return $res->utt;
+    return $test ;
+
 }
 
  ?>
