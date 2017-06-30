@@ -41,19 +41,16 @@ function chat($text) {
     // docomo chatAPI
 
     $context_file = dirname(__FILE__).'/context.txt';
-
-  if ( file_exists($context_file) ) {
-    $req_body['context'] = file_get_contents($context_file);
-    $test = file_get_contents($context_file);
-  }
-
     $api_key = '734863314f674a4c7264535a3479565a2f326e6b59624852366c6c6c387370374e736830666d424e4d5333';
     $api_url = sprintf('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue?APIKEY=%s', $api_key);
     $req_body = array(
-'utt' => $text,
-'t' => 20,
-);
-
+        'utt' => $text,
+        't' => 20,
+    );
+    
+    if ( file_exists($context_file) ) {
+      $req_body['context'] = file_get_contents($context_file);
+    }
 
     $headers = array(
         'Content-Type: application/json; charset=UTF-8',
@@ -67,9 +64,12 @@ function chat($text) {
         );
     $stream = stream_context_create($options);
     $res = json_decode(file_get_contents($api_url, false, $stream));
+    
+    if (isset($res->context)) {
+      file_put_contents($context_file, $res->context);
+    }
 
-    //return $res->utt;
-    return $test ;
+    return $res->utt;
 
 }
 
