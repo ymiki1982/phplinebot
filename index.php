@@ -45,7 +45,7 @@ function chat($text) {
     $api_url = sprintf('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue?APIKEY=%s', $api_key);
     $req_body = array(
         'utt' => $text,
-        't' => 20,
+        't' => 30,
     );
     
     if ( file_exists($context_file) ) {
