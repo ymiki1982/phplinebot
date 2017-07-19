@@ -6,7 +6,7 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 $id = getenv('SEND_ID');
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("おくすり(鼻プシュ)の時間です。");
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("鼻プシュしてください");
 $response = $bot->pushMessage($id, $textMessageBuilder);
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
