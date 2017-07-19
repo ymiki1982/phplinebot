@@ -65,11 +65,13 @@ function chat($text) {
     $stream = stream_context_create($options);
     $res = json_decode(file_get_contents($api_url, false, $stream));
     
+    $con = '';
     if (isset($res->context)) {
       file_put_contents($context_file, $res->context);
+      $con = 'Context';
     }
 
-    return $res->utt .  $res->context;
+    return $res->utt .  $con;
 
 }
 
