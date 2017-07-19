@@ -69,7 +69,7 @@ function chat($text) {
       file_put_contents($context_file, $res->context);
     }
 
-    return $res->utt .  file_get_contents($context_file);
+    return $res->utt;
 
 }
 
