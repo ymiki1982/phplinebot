@@ -68,7 +68,7 @@ function chat($text) {
     $con = '';
     if (isset($res->context)) {
       file_put_contents($context_file, $res->context);
-      $con = 'Context';
+      $con = $res->context;
     }
 
     return $res->utt .  $con;
