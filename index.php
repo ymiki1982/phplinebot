@@ -30,7 +30,7 @@ foreach ($events as $event) {
 
   //id返信
   if ($event->getText() == "id"){
-    $response = "IDは、";
+    $response = "IDは、\n".$event->getUserId();
   }else{
     //docomo返信
     $response = chat($event->getText());  
