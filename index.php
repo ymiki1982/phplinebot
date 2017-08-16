@@ -28,12 +28,16 @@ foreach ($events as $event) {
     continue;
   }
 
-  //id返信
   if ($event->getText() == "id"){
+
+  //id返信
     $response = "IDは、\n".$event->getUserId();
+
   }else{
+
     //docomo返信
     $response = chat($event->getText());  
+
   }
 
   $bot->replyText($event->getReplyToken(), $response . "\nにゃ");

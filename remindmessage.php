@@ -6,7 +6,17 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 $id = getenv('SEND_ID');
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("おくすり飲んだかにゃ？");
+$arrayRemind = array(
+  "おくすり飲んだかにゃ？",
+  "忘れてませんか？おくすり。",
+  "飲んだかー??",
+  "Drugやったか?"
+);
+
+$indexArray = rand(0,count($arrayRemind));
+$textRemindMs = $arrayRemind[indexArray];
+
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(textRemindMs);
 $response = $bot->pushMessage($id, $textMessageBuilder);
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
