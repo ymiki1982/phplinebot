@@ -14,7 +14,7 @@ $arrayRemind = array(
 );
 
 $indexArray = rand(0,count($arrayRemind));
-$textRemindMs = $arrayRemind[indexArray];
+$textRemindMs = $arrayRemind[$indexArray];
 
 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textRemindMs);
 $response = $bot->pushMessage($id, $textMessageBuilder);
