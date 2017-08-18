@@ -13,7 +13,7 @@ $arrayRemind = array(
   "Drugやったか?"
 );
 
-$indexArray = rand(0,count($arrayRemind));
+$indexArray = rand(0,count($arrayRemind)-1);
 $textRemindMs = $arrayRemind[$indexArray];
 
 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($textRemindMs);
