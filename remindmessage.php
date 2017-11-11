@@ -7,9 +7,10 @@ $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET
 $id = getenv('SEND_ID');
 
 $arrayRemind = array(
-  "サプリタイム!",
-  "忘れてませんか、サプリメント",
-  "サプリ!サプリ!サプリ!!"
+  "葉酸タイム!",
+  "忘れてませんか、葉酸!",
+  "YOSAN!YOSAN!YOSAN!!",
+  "さっさと葉酸、葉酸!"
 );
 
 $indexArray = rand(0,count($arrayRemind)-1);
