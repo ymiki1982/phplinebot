@@ -51,11 +51,37 @@ function chat($text) {
     $context_file = dirname(__FILE__).'/context.txt';
     $api_key = '734863314f674a4c7264535a3479565a2f326e6b59624852366c6c6c387370374e736830666d424e4d5333';
     $api_url = sprintf('https://api.apigw.smt.docomo.ne.jp/dialogue/v1/dialogue?APIKEY=%s', $api_key);
-    $req_body = array(
-        'utt' => $text,
-        't' => 30,
-    );
-    
+
+// 送信データ
+$req_body = array(
+  "language"=>"ja-JP",
+  "botId"=>"Chatting",
+  "appId"=>"8861e057-a35d-491b-9829-bf52829552ba",
+  "voiceText"=>$text,
+   "clientData" => array(
+   "option"=> array(
+     "nickname"=>"茜",
+     "nicknameY"=>"あかね",
+     "sex"=>"女",
+     "bloodtype"=>"B",
+     "birthdateY"=>"1981",
+     "birthdateM"=>"12",
+     "birthdateD"=>"19",
+     "age"=>"36",
+     "constellations"=>"双子座",
+     "place"=>"東京",
+     "mode"=>"dialog"
+     )
+   ),
+  "appRecvTime" => date("Y/m/d H:i:s"),
+  "appSendTime" => date("Y/m/d H:i:s")
+);
+
+//    $req_body = array(
+//        'utt' => $text,
+//        't' => 30,
+//    );
+
     if ( file_exists($context_file) ) {
       $req_body['context'] = file_get_contents($context_file);
     }
