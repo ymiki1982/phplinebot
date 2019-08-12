@@ -40,7 +40,7 @@ foreach ($events as $event) {
 
   }
 
-  $bot->replyText($event->getReplyToken(), $response . "\nにゃん");
+  $bot->replyText($event->getReplyToken(), $response . "\nにゃんだ");
 
 }
 
