@@ -35,7 +35,7 @@ foreach ($events as $event) {
 
   }else{
 
-    $response = "XXは、\n".$event->getText();
+    $response = $event->getText();
 
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
