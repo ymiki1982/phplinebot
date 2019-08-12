@@ -35,13 +35,49 @@ foreach ($events as $event) {
 
   }else{
 
+    //talkapi返信
+      $renponse = talk_api_chat($event->getText());
+
     //docomo返信
-    $response = chat($event->getText());  
+//    $response = chat($event->getText());  
 
   }
 
   $bot->replyText($event->getReplyToken(), $response . "\nにゃんだ");
 
+}
+
+//talkapiから雑談データ取得
+function talk_api_chat($text) {
+    $api_key = 'DZZA5t2r80senER7U1PQDPVnKyA83x3M';
+    $api_url = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk';
+    //送信データ
+    $req_body = array(
+        'apikey' => $api_key,
+        'query' => $text
+    );
+    
+    $headers = array(
+    'Content-Type: application/json; charset=UTF-8',
+    );
+    
+    $options = array(
+    'http'=>array(
+    'method' => 'POST',
+    'header' => implode("\r\n", $headers),
+    'content' => json_encode($req_body),
+    )
+    );
+
+    $stream = stream_context_create($options);
+
+    $res = json_decode(file_get_contents($api_url, false, $stream));
+if ($res = 0) {
+$t = $res->results;
+return $t->reply;
+}else{
+return 'err';
+}
 }
 
 //ドコモの雑談APIから雑談データを取得
@@ -76,11 +112,6 @@ $req_body = array(
   "appRecvTime" => date("Y/m/d H:i:s"),
   "appSendTime" => date("Y/m/d H:i:s")
 );
-
-//    $req_body = array(
-//        'utt' => $text,
-//        't' => 30,
-//    );
 
     if ( file_exists($context_file) ) {
       $req_body['context'] = file_get_contents($context_file);
