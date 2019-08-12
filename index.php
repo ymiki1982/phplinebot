@@ -43,12 +43,14 @@ foreach ($events as $event) {
 
   }
 
-  $bot->replyText($event->getReplyToken(), $response . "\nにゃんだ");
+  $bot->replyText($event->getReplyToken(), $response . "\nにゃんだな");
 
 }
 
 //talkapiから雑談データ取得
 function talk_api_chat($text) {
+
+    try{
     $api_key = 'DZZA5t2r80senER7U1PQDPVnKyA83x3M';
     $api_url = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk';
     //送信データ
@@ -72,12 +74,17 @@ function talk_api_chat($text) {
     $stream = stream_context_create($options);
 
     $res = json_decode(file_get_contents($api_url, false, $stream));
-if ($res = 0) {
-$t = $res->results;
-return $t->reply;
-}else{
-return 'err';
-}
+    if ($res = 0) {
+    $t = $res->results;
+        return $t->reply;
+    }else{
+        return 'err';
+    }
+    }catch( Exception $ex ){
+        return $ex->getMessage ();
+    }
+    
+
 }
 
 //ドコモの雑談APIから雑談データを取得
