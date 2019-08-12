@@ -35,7 +35,7 @@ foreach ($events as $event) {
 
   }else{
 
-    $response = talk_api_chat($event->getText());
+    $response = talkapi($event->getText());
 
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
@@ -50,7 +50,7 @@ foreach ($events as $event) {
 }
 
 //talkapiから雑談データ取得
-function talk_api_chat($text) {
+function talkapi($text) {
 
     try{
     $api_key = 'DZZA5t2r80senER7U1PQDPVnKyA83x3M';
@@ -83,7 +83,7 @@ function talk_api_chat($text) {
         return 'err';
     }
     }catch( Exception $ex ){
-        return $ex->getMessage ();
+        return $ex->getMessage();
     }
 }
 
