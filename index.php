@@ -31,14 +31,15 @@ foreach ($events as $event) {
   if ($event->getText() == "id"){
 
   //id返信
-    $response = "IDとは、\n".$event->getUserId();
+    $response = "IDは、\n".$event->getUserId();
 
   }else{
 
-    //talkapi返信
-//      $renponse = talk_api_chat($event->getText());
+    $response = "XXは、\n".$event->getUserId();
 
-            $renponse = "ID以外の言葉";
+    //talkapi返信
+//    $renponse = talk_api_chat($event->getText());
+
     //docomo返信
 //    $response = chat($event->getText());
 
@@ -75,7 +76,7 @@ function talk_api_chat($text) {
     $stream = stream_context_create($options);
 
     $res = json_decode(file_get_contents($api_url, false, $stream));
-    if ($res = 0) {
+    if ($res == 0) {
     $t = $res->results;
         return $t->reply;
     }else{
