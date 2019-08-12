@@ -38,7 +38,7 @@ foreach ($events as $event) {
     //talkapi返信
 //      $renponse = talk_api_chat($event->getText());
 
-            $renponse = $event->getText();
+            $renponse = "ID以外の言葉";
     //docomo返信
 //    $response = chat($event->getText());  
 
