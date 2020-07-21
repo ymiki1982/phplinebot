@@ -15,7 +15,7 @@ if(strtotime("2020/7/19") <= strtotime($today) && strtotime($today) <= strtotime
   $textRemindMs = "2錠のむにゃ";
 }else if(strtotime("2020/7/25") <= strtotime($today) && strtotime($today) <= strtotime("2020/7/27")){
   $textRemindMs = "3錠のむにゃ";
-}else if(date("H") = "22"){
+}else if(date("H") == "22"){
 
     $arrayRemind = array(
 		  "drugs飲むにゃー",
