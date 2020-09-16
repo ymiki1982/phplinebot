@@ -69,14 +69,14 @@ function chaplus_mes($mes,$username){
   $utterancePaires = array(
     "utterance"=>"おはよう！",
     "response"=>"やっほー！"
-  )
+  );
   $dialogue_options = array(
     "utterance"=>$mes,
     "username"=>$username,
     "agentState"=>"リリちゃん",
     "age"=>"7歳",
     "tone"=>"dechu"
-  )
+  );
   $chaplusUrl = "https://www.chaplus.jp/v1/chat?apikey=5f5e0e35d33e5";
   
   $options = array(
