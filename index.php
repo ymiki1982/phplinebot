@@ -32,9 +32,11 @@ foreach ($events as $event) {
 
   //id返信
     $id = $event->getUserId();
-    $response = "IDは、\n".$id;
   //ユーザー名
+    $username = getusernamebyid();
     
+    $response = $username."のIDは、\n".$id;
+
   }else{
 
     $response = $event->getText();
@@ -57,7 +59,10 @@ foreach ($events as $event) {
 
 //username取得
 function getusernamebyid(){
-    $response = $bot->getProfile($event->source->userId);  
+    $myresponse = $bot->getProfile($event->source->userId);
+    if ($myresponse->isSucceeded()) {
+      return $myresponse->getJSONDecodedBody()['displayName'];
+    }
 }
 
 //talkapiから雑談データ取得
