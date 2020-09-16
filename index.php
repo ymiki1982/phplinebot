@@ -33,7 +33,7 @@ foreach ($events as $event) {
   //id返信
     $id = $event->getUserId();
   //ユーザー名
-    $myresponse = $bot->getProfile($event->source->userId);
+    $myresponse = $bot->getProfile($id);
     if ($myresponse->isSucceeded()) {
       $username = $myresponse->getJSONDecodedBody()['displayName'];
     }
