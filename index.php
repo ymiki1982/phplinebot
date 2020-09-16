@@ -31,8 +31,10 @@ foreach ($events as $event) {
   if ($event->getText() == "id"){
 
   //id返信
-    $response = "IDは、\n".$event->displayName();
-
+    $id = $event->getUserId();
+    $response = "IDは、\n".$id;
+  //ユーザー名
+    
   }else{
 
     $response = $event->getText();
@@ -51,6 +53,11 @@ foreach ($events as $event) {
 
   $bot->replyText($event->getReplyToken(), $response . "\nにゃんだな");
 
+}
+
+//username取得
+function getusernamebyid(){
+    $response = $bot->getProfile($event->source->userId);  
 }
 
 //talkapiから雑談データ取得
