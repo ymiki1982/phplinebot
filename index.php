@@ -66,6 +66,8 @@ foreach ($events as $event) {
 
 //chaplus から返信取得
 function chaplus_mes($mes,$username){
+  return "tes";
+  
   $dialogue_options = array(
     "utterance"=>$mes,
     "username"=>$username,
@@ -77,7 +79,6 @@ function chaplus_mes($mes,$username){
   );
   
   $chaplusUrl = "https://www.chaplus.jp/v1/chat?apikey=5f5e0e35d33e5";
-  return $test."tes";
   $ch = curl_init($chaplusUrl);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
   curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $dialogue_options ));
