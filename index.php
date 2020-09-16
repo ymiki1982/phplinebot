@@ -77,7 +77,7 @@ function chaplus_mes($mes,$username){
     "age"=>"7歳",
     "tone"=>"dechu"
   )
-  $ chaplusUrl = "https://www.chaplus.jp/v1/chat?apikey=5f5e0e35d33e5";
+  $chaplusUrl = "https://www.chaplus.jp/v1/chat?apikey=5f5e0e35d33e5";
   
   $options = array(
     'http' => array(
@@ -89,7 +89,7 @@ function chaplus_mes($mes,$username){
 );
   
   $context  = stream_context_create( $options );
-  $result = file_get_contents( $url, false, $context );
+  $result = file_get_contents( $chaplusUrl, false, $context );
   $result = json_decode($result);
 
   return $result->bestResponse->utterance;
