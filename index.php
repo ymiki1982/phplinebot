@@ -49,12 +49,13 @@ foreach ($events as $event) {
     //chatplus返信
 
     $id = $event->getUserId();
-    $response = $id;
     //ユーザー名
-//    $myresponse = $bot->getProfile($id);
-//    if ($myresponse->isSucceeded()) {
-//      $username = $myresponse->getJSONDecodedBody()['displayName'];
-//    } 
+   $myresponse = $bot->getProfile($id);
+   if ($myresponse->isSucceeded()) {
+     $username = $myresponse->getJSONDecodedBody()['displayName'];
+   } 
+    $response = $username;
+
 //     $renponse = chaplusmes($event->getText(),$username);
     
     //talkapi返信
