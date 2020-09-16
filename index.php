@@ -80,20 +80,28 @@ function chaplus_mes($mes,$username){
     )
   );
   $chaplusUrl = "https://www.chaplus.jp/v1/chat?apikey=5f5e0e35d33e5";
-  
-  $options = array(
-    'http' => array(
-      'method'  => 'POST',
-      'content' => json_encode( $dialogue_options ),
-      'header'=>  "Content-Type: application/json; charset=UTF-8"
-  )
-);
-  
-  $context  = stream_context_create( $options );
-  $result = file_get_contents( $chaplusUrl, false, $context );
-  $result = json_decode($result,true);
 
-  return $result->bestResponse->utterance;
+  $ch = curl_init($chaplusUrl);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $dialogue_options ));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $result=curl_exec($ch);
+  curl_close($ch);
+  return $result;  
+  
+//   $options = array(
+//     'http' => array(
+//       'method'  => 'POST',
+//       'content' => json_encode( $dialogue_options ),
+//       'header'=>  "Content-Type: application/json; charset=UTF-8"
+//   )
+// );
+  
+//   $context  = stream_context_create( $options );
+//   $result = file_get_contents( $chaplusUrl, false, $context );
+//   $result = json_decode($result,true);
+
+//   return $result->bestResponse->utterance;
   
 }
 
