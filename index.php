@@ -70,7 +70,6 @@ foreach ($events as $event) {
 
 //chaplus から返信取得
 function chaplusmes($mes,$myusername) {
-  return "tes";
   
   $dialogue_options = array(
     "utterance"=>$mes,
@@ -88,10 +87,9 @@ function chaplusmes($mes,$myusername) {
   curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $dialogue_options ));
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   $result=curl_exec($ch);
-  $test=curl_errno($ch);
+  $result = json_decode($result,true);
   curl_close($ch);
-
-//  return json_decode($result,true);  
+  return $result->bestResponse->utterance;
   
 //   $options = array(
 //     'http' => array(
