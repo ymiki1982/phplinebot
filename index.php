@@ -89,7 +89,7 @@ function chaplusmes($mes,$myusername) {
   $result=curl_exec($ch);
   $result = json_decode($result,true);
   curl_close($ch);
-  return $result["bestResponse"]->utterance;
+  return $result["bestResponse"]["utterance"];
   
 //   $options = array(
 //     'http' => array(
