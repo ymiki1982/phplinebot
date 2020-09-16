@@ -47,10 +47,10 @@ foreach ($events as $event) {
       $username = $myresponse->getJSONDecodedBody()['displayName'];
     }
     //オウム返し
-//    $response = $event->getText();
+    $response = $event->getText();
 
     //chatplus返信
-    $renponse = chaplus_mes($event->getText(),$username);
+//    $renponse = chaplus_mes($event->getText(),$username);
     
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
