@@ -86,7 +86,7 @@ function chaplus_mes($mes,$username){
   curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $dialogue_options ));
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   $result=curl_exec($ch);
-  $test=curl_error($ch);
+  $test=curl_errno($ch);
   curl_close($ch);
   return $test;
 //  return json_decode($result,true);  
