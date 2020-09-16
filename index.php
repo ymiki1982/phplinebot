@@ -28,17 +28,17 @@ foreach ($events as $event) {
     continue;
   }
 
-  //ユーザー名
-  $myresponse = $bot->getProfile($id);
-  if ($myresponse->isSucceeded()) {
-    $username = $myresponse->getJSONDecodedBody()['displayName'];
-  } 
-  
   if ($event->getText() == "id"){
-
-  //id返信
+    
+    //id返信
     $id = $event->getUserId();
 
+    //ユーザー名
+    $myresponse = $bot->getProfile($id);
+    if ($myresponse->isSucceeded()) {
+      $username = $myresponse->getJSONDecodedBody()['displayName'];
+    }     
+    
     $response = $username."のIDは、\n".$id;
 
   }else{
@@ -47,8 +47,16 @@ foreach ($events as $event) {
 //    $response = $event->getText();
 
     //chatplus返信
-//    $renponse = chaplus_mes($event->getText(),$username);
-    $renponse = $username;
+
+    $id = $event->getUserId();
+    
+    //ユーザー名
+    $myresponse = $bot->getProfile($id);
+    if ($myresponse->isSucceeded()) {
+      $username = $myresponse->getJSONDecodedBody()['displayName'];
+    } 
+    
+    $renponse = chaplus_mes($event->getText(),$username);
     
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
