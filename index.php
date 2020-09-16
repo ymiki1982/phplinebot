@@ -77,7 +77,7 @@ function chaplus_mes($mes,$username){
   );
   
   $chaplusUrl = "https://www.chaplus.jp/v1/chat?apikey=5f5e0e35d33e5";
-
+  return $test."tes";
   $ch = curl_init($chaplusUrl);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
   curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $dialogue_options ));
@@ -85,7 +85,7 @@ function chaplus_mes($mes,$username){
   $result=curl_exec($ch);
   $test=curl_errno($ch);
   curl_close($ch);
-  return $test."tes";
+
 //  return json_decode($result,true);  
   
 //   $options = array(
