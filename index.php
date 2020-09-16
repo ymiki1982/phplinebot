@@ -37,16 +37,20 @@ foreach ($events as $event) {
     if ($myresponse->isSucceeded()) {
       $username = $myresponse->getJSONDecodedBody()['displayName'];
     }
-        
     $response = $username."のIDは、\n".$id;
 
   }else{
 
-    $response = $event->getText();
+    //ユーザー名
+    $myresponse = $bot->getProfile($id);
+    if ($myresponse->isSucceeded()) {
+      $username = $myresponse->getJSONDecodedBody()['displayName'];
+    }
+    //オウム返し
+//    $response = $event->getText();
 
     //chatplus返信
-//    $renponse = talk_api_chat($event->getText());
-    
+    $renponse = chaplus_mes($event->getText(),$username);
     
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
@@ -58,6 +62,38 @@ foreach ($events as $event) {
 
   $bot->replyText($event->getReplyToken(), $response . "\nにゃんだな");
 
+}
+
+//chaplus から返信取得
+function chaplus_mes($mes,$username){
+  $utterancePaires = array(
+    "utterance"=>"おはよう！",
+    "response"=>"やっほー！"
+  )
+  $dialogue_options = array(
+    "utterance"=>$mes,
+    "username"=>$username,
+    "agentState"=>"リリちゃん",
+    "age"=>"7歳",
+    "tone"=>"dechu"
+  )
+  $ chaplusUrl = "https://www.chaplus.jp/v1/chat?apikey=5f5e0e35d33e5";
+  
+  $options = array(
+    'http' => array(
+      'method'  => 'POST',
+      'content' => json_encode( $dialogue_options ),
+      'header'=>  "Content-Type: application/json\r\n" .
+        "Accept: application/json\r\n"
+  )
+);
+  
+  $context  = stream_context_create( $options );
+  $result = file_get_contents( $url, false, $context );
+  $result = json_decode($result);
+
+  return $result->bestResponse->utterance;
+  
 }
 
 //talkapiから雑談データ取得
