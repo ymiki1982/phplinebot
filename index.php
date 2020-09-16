@@ -64,7 +64,7 @@ foreach ($events as $event) {
 
   }
 
-  $bot->replyText($event->getReplyToken(), $response . "\nにゃんだな");
+  $bot->replyText($event->getReplyToken(), $response );
 
 }
 
