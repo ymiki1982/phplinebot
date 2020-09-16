@@ -92,7 +92,7 @@ function chaplus_mes($mes,$username){
   
   $context  = stream_context_create( $options );
   $result = file_get_contents( $chaplusUrl, false, $context );
-  $result = json_decode($result);
+  $result = json_decode($result,true);
 
   return $result->bestResponse->utterance;
   
