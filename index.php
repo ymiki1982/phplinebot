@@ -55,8 +55,8 @@ foreach ($events as $event) {
     if ($myresponse->isSucceeded()) {
       $username = $myresponse->getJSONDecodedBody()['displayName'];
     } 
-    
-    $renponse = chaplus_mes($event->getText(),$username);
+       $renponse = $username; 
+//     $renponse = chaplusmes($event->getText(),$username);
     
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
@@ -71,7 +71,7 @@ foreach ($events as $event) {
 }
 
 //chaplus から返信取得
-function chaplus_mes($mes,$myusername) {
+function chaplusmes($mes,$myusername) {
   return "tes";
   
   $dialogue_options = array(
