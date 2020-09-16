@@ -44,18 +44,17 @@ foreach ($events as $event) {
   }else{
 
     //オウム返し
-//    $response = $event->getText();
+    $response = $event->getText();
 
     //chatplus返信
 
-    $id = $event->getUserId();
+//    $id = $event->getUserId();
     
     //ユーザー名
-    $myresponse = $bot->getProfile($id);
-    if ($myresponse->isSucceeded()) {
-      $username = $myresponse->getJSONDecodedBody()['displayName'];
-    } 
-       $renponse = $username; 
+//    $myresponse = $bot->getProfile($id);
+//    if ($myresponse->isSucceeded()) {
+//      $username = $myresponse->getJSONDecodedBody()['displayName'];
+//    } 
 //     $renponse = chaplusmes($event->getText(),$username);
     
     //talkapi返信
