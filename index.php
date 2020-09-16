@@ -31,12 +31,16 @@ foreach ($events as $event) {
   if ($event->getText() == "id"){
 
   //id返信
-    $response = "IDは、\n".$event->getUserId();
+    $response = "IDは、\n".$event->displayName();
 
   }else{
 
     $response = $event->getText();
 
+    //chatplus返信
+//    $renponse = talk_api_chat($event->getText());
+    
+    
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
 
