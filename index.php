@@ -85,8 +85,7 @@ function chaplus_mes($mes,$username){
     'http' => array(
       'method'  => 'POST',
       'content' => json_encode( $dialogue_options ),
-      'header'=>  "Content-Type: application/json\r\n" .
-        "Accept: application/json\r\n"
+      'header'=>  "Content-Type: application/json; charset=UTF-8"
   )
 );
   
