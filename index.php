@@ -50,7 +50,8 @@ foreach ($events as $event) {
 //    $response = $event->getText();
 
     //chatplus返信
-    $renponse = chaplus_mes($event->getText(),$username);
+//    $renponse = chaplus_mes($event->getText(),$username);
+    $renponse = $username;
     
     //talkapi返信
 //    $renponse = talk_api_chat($event->getText());
@@ -65,7 +66,7 @@ foreach ($events as $event) {
 }
 
 //chaplus から返信取得
-function chaplus_mes($mes,$username){
+function chaplus_mes($mes,$username) {
   return "tes";
   
   $dialogue_options = array(
