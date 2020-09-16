@@ -28,24 +28,21 @@ foreach ($events as $event) {
     continue;
   }
 
+  //ユーザー名
+  $myresponse = $bot->getProfile($id);
+  if ($myresponse->isSucceeded()) {
+    $username = $myresponse->getJSONDecodedBody()['displayName'];
+  } 
+  
   if ($event->getText() == "id"){
 
   //id返信
     $id = $event->getUserId();
-  //ユーザー名
-    $myresponse = $bot->getProfile($id);
-    if ($myresponse->isSucceeded()) {
-      $username = $myresponse->getJSONDecodedBody()['displayName'];
-    }
+
     $response = $username."のIDは、\n".$id;
 
   }else{
 
-    //ユーザー名
-    $myresponse = $bot->getProfile($id);
-    if ($myresponse->isSucceeded()) {
-      $username = $myresponse->getJSONDecodedBody()['displayName'];
-    }
     //オウム返し
 //    $response = $event->getText();
 
