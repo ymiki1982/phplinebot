@@ -71,12 +71,12 @@ foreach ($events as $event) {
 }
 
 //chaplus から返信取得
-function chaplus_mes($mes,$username) {
+function chaplus_mes($mes,$myusername) {
   return "tes";
   
   $dialogue_options = array(
     "utterance"=>$mes,
-    "username"=>$username,
+    "username"=>$myusername,
     "agentState"=> array(
       "agentName"=>"リリちゃん",
       "age"=>"7歳",
